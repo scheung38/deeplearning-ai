@@ -1,0 +1,1 @@
+Write a script that takes in a Wikipedia category as a command line argument and outputs the cumulative frequency of non-common words across all of the pages in that category, and then run it on "Large_language_models." Use the MediaWiki API. Create a new file called `wiki_category_analysis.py` inside the `wikipedia_analysis` directory.
