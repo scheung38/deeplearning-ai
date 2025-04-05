@@ -77,7 +77,7 @@ def clean_and_split_text(text):
 
 # Function to count non-common words
 def count_non_common_words(words):
-    common_words = set(['the', 'is', 'in', 'and', 'to', 'of', 'a', 'for', 'on', 'with', 'as', 'by', 'at', 'an'])
+    common_words = set(['the', 'be','this', 'that', 'not', 'they','it','is','its', 'in', 'and', 'to', 'of', 'a', 'which', 'for', 'was', 'on', 'with', 'as', 'by', 'at', 'an'])
     return Counter(word for word in words if word not in common_words and not word.isdigit() and not word.isnumeric())
 
 def process_category(category):
@@ -93,7 +93,7 @@ def process_category(category):
             words = clean_and_split_text(text)
             cumulative_counter.update(count_non_common_words(words))
     
-    return cumulative_counter
+    return cumulative_counter.most_common(100)
 
 @app.get("/word-frequencies/{category}")
 async def get_word_frequencies(category: str):
@@ -112,7 +112,7 @@ async def get_word_frequencies(category: str):
     if not cumulative_counter:
         raise HTTPException(status_code=404, detail="No data found for the given category")
 
-    return JSONResponse(content=dict(cumulative_counter))
+    return JSONResponse(content=dict(cumulative_counter.most_common(200)))
 
 if __name__ == "__main__":
     uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)

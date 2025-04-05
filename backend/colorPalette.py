@@ -13,3 +13,17 @@ class BrightColorPalette(ColorPalette):
 class PastelColorPalette(ColorPalette):
     def __init__(self):
         super().__init__(["#4567b7", "#ffb3b3", "#a3d5f3", "#d6e9f2", "#ffd7be", "#c9e4ca"])
+
+class RGBColorPalette(ColorPalette):
+    def __init__(self):
+        super().__init__(["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff", "#00ffff"])
+        
+
+def get_all_color_palettes():
+    return {
+        "default": DefaultColorPalette(),
+        "bright": BrightColorPalette(),
+        "pastel": PastelColorPalette(),
+        "rgb": RGBColorPalette()
+    }
+    
